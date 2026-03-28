@@ -12,6 +12,7 @@ __pycache__/
 
 tmp
 
+
 **/settings.local.json
 
 .lycheecache
