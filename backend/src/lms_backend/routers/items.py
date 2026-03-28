@@ -19,14 +19,23 @@ async def get_items(session: AsyncSession = Depends(get_session)):
     """Get all items."""
     try:
         return await read_items(session)
-    except Exception as exc:
+    except LookupError as exc:
         logger.warning(
-            "items_list_failed_as_not_found",
-            extra={"event": "items_list_failed_as_not_found"},
+            "items_list_not_found",
+            extra={"event": "items_list_not_found"},
         )
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Items not found",
+        ) from exc
+    except Exception as exc:
+        logger.error(
+            "items_list_failed",
+            extra={"event": "items_list_failed", "error": str(exc)},
+        )
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Failed to read items",
         ) from exc
 
 
