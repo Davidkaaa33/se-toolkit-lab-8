@@ -73,11 +73,6 @@
     "eamodio.gitlens",
 
     // Coding agent.
-    "qwenlm.qwen-code-vscode-ide-companion",
-
-    // ## Useful but optional
-
-    // Show errors, warnings, and other diagnostics in-line.
     "usernamehw.errorlens",
 
     // Outline TODOs in files.
